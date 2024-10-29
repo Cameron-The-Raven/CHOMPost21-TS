@@ -162,3 +162,6 @@ config/jobwhitelist.txt
 
 #ignore tracy dll
 prof.dll
+
+#OP21 Map Stuff
+/_maps/outpost_gecko/secrets
