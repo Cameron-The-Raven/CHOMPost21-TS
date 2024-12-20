@@ -67,7 +67,10 @@
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_cockpit)
 "bE" = (
-/obj/machinery/appliance/cooker/grill,
+/obj/machinery/appliance/cooker/grill{
+	pixel_x = -16;
+	density = 0
+	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -494,10 +497,11 @@
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_general)
 "jq" = (
-/obj/machinery/appliance/cooker/oven,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/table/marble,
+/obj/machinery/microwave/advanced,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/shuttle/imp_sh_kitchen)
 "jE" = (
@@ -838,6 +842,10 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/shuttle/imp_sh_medical)
+"pZ" = (
+/obj/machinery/iv_drip,
+/turf/simulated/floor/tiled/eris/cafe,
+/area/shuttle/imp_sh_medical)
 "qh" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hop,
@@ -866,20 +874,6 @@
 "qt" = (
 /turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/imp_sh_medical)
-"qw" = (
-/obj/structure/closet/walllocker_double{
-	pixel_y = -26
-	},
-/obj/item/reagent_containers/food/condiment/soysauce,
-/obj/item/reagent_containers/food/condiment/soysauce,
-/obj/item/reagent_containers/food/condiment/soysauce,
-/obj/item/reagent_containers/food/condiment/soysauce,
-/obj/item/reagent_containers/food/condiment/soysauce,
-/obj/structure/sink{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/eris/cafe,
-/area/shuttle/imp_sh_kitchen)
 "qx" = (
 /obj/machinery/computer/shuttle_control/explore/imp_sh,
 /turf/simulated/floor/bmarble,
@@ -1128,10 +1122,6 @@
 "vs" = (
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_research)
-"vx" = (
-/obj/machinery/mech_recharger,
-/turf/simulated/floor/bmarble,
-/area/shuttle/imp_sh_research)
 "vF" = (
 /obj/structure/toilet{
 	dir = 4
@@ -1324,9 +1314,11 @@
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
 "xU" = (
-/obj/machinery/iv_drip,
-/turf/simulated/floor/tiled/eris/cafe,
-/area/shuttle/imp_sh_medical)
+/obj/effect/landmark{
+	name = "JoinLate"
+	},
+/turf/simulated/floor/wood/alt/tile,
+/area/shuttle/imp_sh_dorms)
 "yy" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -1437,7 +1429,10 @@
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
 "zT" = (
-/obj/machinery/appliance/cooker/oven,
+/obj/machinery/appliance/cooker/oven{
+	pixel_x = -16;
+	density = 0
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/shuttle/imp_sh_kitchen)
 "Aa" = (
@@ -1487,12 +1482,6 @@
 /obj/item/bedsheet/green,
 /turf/simulated/floor/wood/alt/tile,
 /area/shuttle/imp_sh_dorms)
-"Bw" = (
-/obj/machinery/recharger/wallcharger{
-	pixel_y = -26
-	},
-/turf/simulated/floor/bmarble,
-/area/shuttle/imp_sh_general)
 "BD" = (
 /turf/simulated/shuttle/wall/dark,
 /area/shuttle/imp_sh_astraroom)
@@ -1792,6 +1781,10 @@
 /obj/machinery/vending/deluxe_cigs,
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
+"Hu" = (
+/obj/machinery/mech_recharger,
+/turf/simulated/floor/bmarble,
+/area/shuttle/imp_sh_research)
 "HA" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -2285,6 +2278,12 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
+"PV" = (
+/obj/machinery/recharger/wallcharger{
+	pixel_y = -26
+	},
+/turf/simulated/floor/bmarble,
+/area/shuttle/imp_sh_general)
 "PW" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -2411,8 +2410,10 @@
 /turf/simulated/shuttle/wall/dark/no_join,
 /area/shuttle/imp_sh_engineering)
 "RG" = (
-/obj/structure/table/marble,
-/obj/machinery/microwave/advanced,
+/obj/machinery/smartfridge/chef{
+	density = 0;
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/shuttle/imp_sh_kitchen)
 "RV" = (
@@ -2607,12 +2608,6 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
-"VO" = (
-/obj/effect/landmark{
-	name = "JoinLate"
-	},
-/turf/simulated/floor/wood/alt/tile,
-/area/shuttle/imp_sh_dorms)
 "VP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2665,6 +2660,20 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
+"Wm" = (
+/obj/structure/closet/walllocker_double{
+	pixel_y = -26
+	},
+/obj/item/reagent_containers/food/condiment/soysauce,
+/obj/item/reagent_containers/food/condiment/soysauce,
+/obj/item/reagent_containers/food/condiment/soysauce,
+/obj/item/reagent_containers/food/condiment/soysauce,
+/obj/item/reagent_containers/food/condiment/soysauce,
+/obj/structure/sink{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/shuttle/imp_sh_kitchen)
 "Wp" = (
 /obj/machinery/smartfridge/chemistry{
 	density = 0;
@@ -2805,7 +2814,10 @@
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_general)
 "XJ" = (
-/obj/machinery/appliance/cooker/fryer,
+/obj/machinery/appliance/cooker/fryer{
+	pixel_x = -16;
+	density = 0
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/shuttle/imp_sh_kitchen)
 "XQ" = (
@@ -2857,7 +2869,8 @@
 /area/shuttle/imp_sh_lounge)
 "Yx" = (
 /obj/machinery/computer/rdconsole{
-	dir = 8
+	dir = 8;
+	density = 0
 	},
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_research)
@@ -3107,7 +3120,7 @@ ai
 KX
 pW
 TT
-xU
+pZ
 nG
 ER
 WP
@@ -3143,7 +3156,7 @@ iO
 iO
 iO
 iO
-qw
+Wm
 ER
 Wp
 Zp
@@ -3307,7 +3320,7 @@ Do
 BD
 Zs
 Zs
-Bw
+PV
 dE
 im
 Cm
@@ -3651,7 +3664,7 @@ FS
 ws
 Zs
 Zs
-Bw
+PV
 Kd
 df
 Cm
@@ -3685,7 +3698,7 @@ kW
 ok
 ta
 xS
-VO
+xU
 zx
 zx
 zx
@@ -3740,7 +3753,7 @@ jp
 Xu
 ES
 SP
-vx
+Hu
 SZ
 CG
 FE
