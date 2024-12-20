@@ -48,12 +48,6 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
-"aR" = (
-/obj/effect/landmark{
-	name = "JoinLateElevator"
-	},
-/turf/simulated/floor/wood/alt/tile,
-/area/shuttle/imp_sh_dorms)
 "aY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -520,10 +514,6 @@
 	},
 /turf/simulated/floor/tiled/kafel_full,
 /area/shuttle/imp_sh_dorms)
-"jN" = (
-/obj/machinery/mech_recharger,
-/turf/simulated/floor/bmarble,
-/area/shuttle/imp_sh_research)
 "jO" = (
 /obj/machinery/vending/medical{
 	density = 0;
@@ -580,12 +570,6 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
-"kL" = (
-/obj/effect/landmark{
-	name = "JoinLateCyborg"
-	},
-/turf/simulated/floor/wood/alt/tile,
-/area/shuttle/imp_sh_dorms)
 "kU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	alpha = 255;
@@ -691,12 +675,6 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_lounge)
-"mL" = (
-/obj/machinery/recharger/wallcharger{
-	pixel_y = -26
-	},
-/turf/simulated/floor/bmarble,
-/area/shuttle/imp_sh_general)
 "mO" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -811,12 +789,6 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_cockpit)
-"pa" = (
-/obj/effect/landmark{
-	name = "JoinLateCryo"
-	},
-/turf/simulated/floor/wood/alt/tile,
-/area/shuttle/imp_sh_dorms)
 "pf" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -894,6 +866,20 @@
 "qt" = (
 /turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/imp_sh_medical)
+"qw" = (
+/obj/structure/closet/walllocker_double{
+	pixel_y = -26
+	},
+/obj/item/reagent_containers/food/condiment/soysauce,
+/obj/item/reagent_containers/food/condiment/soysauce,
+/obj/item/reagent_containers/food/condiment/soysauce,
+/obj/item/reagent_containers/food/condiment/soysauce,
+/obj/item/reagent_containers/food/condiment/soysauce,
+/obj/structure/sink{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/shuttle/imp_sh_kitchen)
 "qx" = (
 /obj/machinery/computer/shuttle_control/explore/imp_sh,
 /turf/simulated/floor/bmarble,
@@ -1025,10 +1011,6 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
-"sQ" = (
-/obj/machinery/iv_drip,
-/turf/simulated/floor/tiled/eris/cafe,
-/area/shuttle/imp_sh_medical)
 "sT" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -1144,6 +1126,10 @@
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_lounge)
 "vs" = (
+/turf/simulated/floor/bmarble,
+/area/shuttle/imp_sh_research)
+"vx" = (
+/obj/machinery/mech_recharger,
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_research)
 "vF" = (
@@ -1338,16 +1324,9 @@
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
 "xU" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/landmark{
-	name = "Observer-Start"
-	},
-/obj/effect/landmark{
-	name = "Observer-Start"
-	},
-/turf/simulated/shuttle/wall/dark,
-/area/shuttle/imp_sh_lounge)
+/obj/machinery/iv_drip,
+/turf/simulated/floor/tiled/eris/cafe,
+/area/shuttle/imp_sh_medical)
 "yy" = (
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -1508,6 +1487,12 @@
 /obj/item/bedsheet/green,
 /turf/simulated/floor/wood/alt/tile,
 /area/shuttle/imp_sh_dorms)
+"Bw" = (
+/obj/machinery/recharger/wallcharger{
+	pixel_y = -26
+	},
+/turf/simulated/floor/bmarble,
+/area/shuttle/imp_sh_general)
 "BD" = (
 /turf/simulated/shuttle/wall/dark,
 /area/shuttle/imp_sh_astraroom)
@@ -1730,6 +1715,9 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/outline/grey,
+/obj/effect/landmark{
+	name = "Observer-Start"
+	},
 /turf/simulated/floor/wood/alt/tile,
 /area/shuttle/imp_sh_dorms)
 "FE" = (
@@ -1742,7 +1730,7 @@
 /area/shuttle/imp_sh_research)
 "FS" = (
 /obj/effect/landmark{
-	name = "JoinLate"
+	name = "Observer-Start"
 	},
 /turf/simulated/floor/wood/alt/tile,
 /area/shuttle/imp_sh_dorms)
@@ -2283,20 +2271,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/shuttle/wall/dark,
 /area/shuttle/imp_sh_lounge)
-"PB" = (
-/obj/structure/closet/walllocker_double{
-	pixel_y = -26
-	},
-/obj/item/reagent_containers/food/condiment/soysauce,
-/obj/item/reagent_containers/food/condiment/soysauce,
-/obj/item/reagent_containers/food/condiment/soysauce,
-/obj/item/reagent_containers/food/condiment/soysauce,
-/obj/item/reagent_containers/food/condiment/soysauce,
-/obj/structure/sink{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/eris/cafe,
-/area/shuttle/imp_sh_kitchen)
 "PI" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/closet/crate/engineering,
@@ -2633,6 +2607,12 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
+"VO" = (
+/obj/effect/landmark{
+	name = "JoinLate"
+	},
+/turf/simulated/floor/wood/alt/tile,
+/area/shuttle/imp_sh_dorms)
 "VP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2837,6 +2817,9 @@
 "XU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
+	},
+/obj/effect/landmark{
+	name = "Observer-Start"
 	},
 /turf/simulated/floor/wood/alt/tile,
 /area/shuttle/imp_sh_dorms)
@@ -3124,7 +3107,7 @@ ai
 KX
 pW
 TT
-sQ
+xU
 nG
 ER
 WP
@@ -3160,7 +3143,7 @@ iO
 iO
 iO
 iO
-PB
+qw
 ER
 Wp
 Zp
@@ -3324,7 +3307,7 @@ Do
 BD
 Zs
 Zs
-mL
+Bw
 dE
 im
 Cm
@@ -3501,7 +3484,7 @@ Rm
 Kv
 Pz
 Kv
-xU
+Pz
 Kv
 hC
 oe
@@ -3619,7 +3602,7 @@ ws
 ws
 ps
 NH
-zx
+FS
 XU
 mY
 eP
@@ -3661,14 +3644,14 @@ jJ
 hZ
 gU
 FS
-kL
+FS
 zx
 zx
-pa
+FS
 ws
 Zs
 Zs
-mL
+Bw
 Kd
 df
 Cm
@@ -3702,7 +3685,7 @@ kW
 ok
 ta
 xS
-aR
+VO
 zx
 zx
 zx
@@ -3757,7 +3740,7 @@ jp
 Xu
 ES
 SP
-jN
+vx
 SZ
 CG
 FE
