@@ -48,6 +48,12 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
+"aR" = (
+/obj/effect/landmark{
+	name = "JoinLateElevator"
+	},
+/turf/simulated/floor/wood/alt/tile,
+/area/shuttle/imp_sh_dorms)
 "aY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -128,7 +134,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/shuttle/imp_sh_astraroom)
 "df" = (
-/obj/random/crate,
+/obj/random/multiple/random_size_crate,
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_lounge)
 "dh" = (
@@ -170,10 +176,10 @@
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
 "dz" = (
-/turf/simulated/shuttle/wall/dark/no_join,
+/turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/imp_sh_research)
 "dE" = (
-/turf/simulated/shuttle/wall/dark/no_join,
+/turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/imp_sh_lounge)
 "dI" = (
 /obj/machinery/alarm/alarms_hidden{
@@ -295,7 +301,7 @@
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_general)
 "gc" = (
-/turf/simulated/shuttle/wall/dark/no_join,
+/turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/imp_sh_engineering)
 "gh" = (
 /obj/machinery/light{
@@ -310,7 +316,7 @@
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
 "gQ" = (
-/turf/simulated/shuttle/wall/dark/no_join,
+/turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/imp_sh_general)
 "gS" = (
 /obj/structure/cable{
@@ -328,7 +334,7 @@
 /obj/structure/hull_corner/long_vert{
 	dir = 10
 	},
-/turf/space,
+/turf/simulated/floor/airless,
 /area/shuttle/imp_sh)
 "hs" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -344,7 +350,7 @@
 "hC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/turf/simulated/shuttle/wall/dark/no_join,
+/turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/imp_sh_lounge)
 "hD" = (
 /obj/item/clothing/head/helmet/space/void/exploration,
@@ -366,6 +372,16 @@
 /obj/item/tank/air,
 /obj/item/tank/air,
 /obj/structure/closet/crate,
+/obj/item/clothing/shoes/magboots/adv,
+/obj/item/clothing/shoes/magboots/adv,
+/obj/item/clothing/shoes/magboots/adv,
+/obj/item/clothing/shoes/magboots/adv,
+/obj/item/clothing/shoes/magboots/adv,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_general)
 "hH" = (
@@ -375,7 +391,7 @@
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
 "hZ" = (
-/turf/simulated/shuttle/wall/dark/no_join,
+/turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/imp_sh_dorms)
 "ic" = (
 /obj/structure/extinguisher_cabinet{
@@ -504,8 +520,15 @@
 	},
 /turf/simulated/floor/tiled/kafel_full,
 /area/shuttle/imp_sh_dorms)
+"jN" = (
+/obj/machinery/mech_recharger,
+/turf/simulated/floor/bmarble,
+/area/shuttle/imp_sh_research)
 "jO" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical{
+	density = 0;
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/shuttle/imp_sh_medical)
 "jT" = (
@@ -557,6 +580,12 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
+"kL" = (
+/obj/effect/landmark{
+	name = "JoinLateCyborg"
+	},
+/turf/simulated/floor/wood/alt/tile,
+/area/shuttle/imp_sh_dorms)
 "kU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	alpha = 255;
@@ -662,6 +691,12 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_lounge)
+"mL" = (
+/obj/machinery/recharger/wallcharger{
+	pixel_y = -26
+	},
+/turf/simulated/floor/bmarble,
+/area/shuttle/imp_sh_general)
 "mO" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -684,9 +719,6 @@
 /obj/machinery/alarm/alarms_hidden{
 	dir = 1;
 	pixel_y = -26
-	},
-/obj/effect/landmark{
-	name = "JoinLateCryo"
 	},
 /turf/simulated/floor/wood/alt/tile,
 /area/shuttle/imp_sh_dorms)
@@ -722,7 +754,7 @@
 	density = 0;
 	dir = 4;
 	icon_state = "pdoor0";
-	id = "astra_blast";
+	id = "imp_prison";
 	name = "Blast Shields";
 	opacity = 0
 	},
@@ -741,6 +773,12 @@
 /area/shuttle/imp_sh_medical)
 "oc" = (
 /obj/structure/closet/chefcloset,
+/obj/item/material/knife,
+/obj/item/material/knife,
+/obj/item/material/knife,
+/obj/item/material/knife,
+/obj/item/material/knife,
+/obj/item/material/knife,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/shuttle/imp_sh_kitchen)
 "oe" = (
@@ -773,6 +811,12 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_cockpit)
+"pa" = (
+/obj/effect/landmark{
+	name = "JoinLateCryo"
+	},
+/turf/simulated/floor/wood/alt/tile,
+/area/shuttle/imp_sh_dorms)
 "pf" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -816,7 +860,9 @@
 /area/shuttle/imp_sh_lounge)
 "pW" = (
 /obj/machinery/computer/operating{
-	dir = 4
+	dir = 4;
+	density = 0;
+	pixel_x = -24
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/shuttle/imp_sh_medical)
@@ -846,7 +892,7 @@
 /turf/simulated/floor/wood/alt/tile,
 /area/shuttle/imp_sh_dorms)
 "qt" = (
-/turf/simulated/shuttle/wall/dark/no_join,
+/turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/imp_sh_medical)
 "qx" = (
 /obj/machinery/computer/shuttle_control/explore/imp_sh,
@@ -907,7 +953,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/random/crate,
+/obj/random/multiple/random_size_crate,
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_lounge)
 "rE" = (
@@ -979,6 +1025,10 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
+"sQ" = (
+/obj/machinery/iv_drip,
+/turf/simulated/floor/tiled/eris/cafe,
+/area/shuttle/imp_sh_medical)
 "sT" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -1024,7 +1074,7 @@
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_general)
 "ue" = (
-/turf/simulated/shuttle/wall/dark/no_join,
+/turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/imp_sh_armory)
 "uk" = (
 /obj/machinery/light,
@@ -1377,6 +1427,16 @@
 /obj/item/storage/box/beakers,
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/glass/beaker/large,
+/obj/structure/closet/walllocker_double/medical/west{
+	pixel_x = 0;
+	pixel_y = 32;
+	dir = 2
+	},
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/machinery/reagentgrinder,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/shuttle/imp_sh_medical)
 "zM" = (
@@ -1500,7 +1560,7 @@
 /obj/structure/hull_corner/long_vert{
 	dir = 6
 	},
-/turf/space,
+/turf/simulated/floor/airless,
 /area/shuttle/imp_sh)
 "BW" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/fuel{
@@ -1556,7 +1616,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/random/crate,
+/obj/random/multiple/random_size_crate,
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_lounge)
 "Da" = (
@@ -1625,6 +1685,7 @@
 /obj/structure/table/steel,
 /obj/item/lightreplacer,
 /obj/item/multitool,
+/obj/machinery/cell_charger,
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
 "EO" = (
@@ -1656,7 +1717,7 @@
 /obj/structure/hull_corner{
 	dir = 4
 	},
-/turf/space,
+/turf/simulated/floor/airless,
 /area/shuttle/imp_sh)
 "Fp" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -1682,9 +1743,6 @@
 "FS" = (
 /obj/effect/landmark{
 	name = "JoinLate"
-	},
-/obj/effect/landmark{
-	name = "JoinLateElevator"
 	},
 /turf/simulated/floor/wood/alt/tile,
 /area/shuttle/imp_sh_dorms)
@@ -1864,6 +1922,16 @@
 /obj/item/tank/air,
 /obj/item/tank/air,
 /obj/structure/closet/crate,
+/obj/item/clothing/shoes/magboots/adv,
+/obj/item/clothing/shoes/magboots/adv,
+/obj/item/clothing/shoes/magboots/adv,
+/obj/item/clothing/shoes/magboots/adv,
+/obj/item/clothing/shoes/magboots/adv,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_general)
 "JE" = (
@@ -1884,7 +1952,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/random/crate,
+/obj/random/multiple/random_size_crate,
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_lounge)
 "JR" = (
@@ -1952,6 +2020,10 @@
 /obj/item/reagent_containers/blood/prelabeled/OMinus,
 /obj/item/reagent_containers/blood/prelabeled/OMinus,
 /obj/item/reagent_containers/blood/prelabeled/OMinus,
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/shuttle/imp_sh_medical)
 "KZ" = (
@@ -2099,9 +2171,6 @@
 /area/shuttle/imp_sh_general)
 "NH" = (
 /obj/machinery/cryopod/robot,
-/obj/effect/landmark{
-	name = "JoinLateCyborg"
-	},
 /turf/simulated/floor/wood/alt/tile,
 /area/shuttle/imp_sh_dorms)
 "NI" = (
@@ -2214,6 +2283,20 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/shuttle/wall/dark,
 /area/shuttle/imp_sh_lounge)
+"PB" = (
+/obj/structure/closet/walllocker_double{
+	pixel_y = -26
+	},
+/obj/item/reagent_containers/food/condiment/soysauce,
+/obj/item/reagent_containers/food/condiment/soysauce,
+/obj/item/reagent_containers/food/condiment/soysauce,
+/obj/item/reagent_containers/food/condiment/soysauce,
+/obj/item/reagent_containers/food/condiment/soysauce,
+/obj/structure/sink{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/shuttle/imp_sh_kitchen)
 "PI" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/closet/crate/engineering,
@@ -2333,13 +2416,13 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/random/crate,
+/obj/random/multiple/random_size_crate,
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_lounge)
 "Rm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/shuttle/wall/dark/no_join,
+/turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/imp_sh_lounge)
 "Rx" = (
 /obj/machinery/light{
@@ -2359,7 +2442,7 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/shuttle/imp_sh_kitchen)
 "RV" = (
-/turf/simulated/shuttle/wall/dark/no_join,
+/turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/imp_sh_astraroom)
 "Sh" = (
 /obj/machinery/power/emitter,
@@ -2405,13 +2488,13 @@
 /area/shuttle/imp_sh_research)
 "Tp" = (
 /obj/machinery/light_switch,
-/turf/simulated/shuttle/wall/dark/no_join,
+/turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/imp_sh_engineering)
 "Ts" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/random/crate,
+/obj/random/multiple/random_size_crate,
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_lounge)
 "Tx" = (
@@ -2603,12 +2686,18 @@
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
 "Wp" = (
-/obj/machinery/chemical_dispenser/full,
-/obj/structure/table/marble,
+/obj/machinery/smartfridge/chemistry{
+	density = 0;
+	pixel_y = 32
+	},
+/obj/machinery/chemical_dispenser/full{
+	pixel_y = 33;
+	pixel_x = -2
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/shuttle/imp_sh_medical)
 "Wr" = (
-/turf/simulated/shuttle/wall/dark/no_join,
+/turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/imp_sh_kitchen)
 "Wv" = (
 /obj/machinery/portable_atmospherics/canister/air{
@@ -2628,7 +2717,7 @@
 /obj/structure/hull_corner{
 	dir = 1
 	},
-/turf/space,
+/turf/simulated/floor/airless,
 /area/shuttle/imp_sh)
 "WB" = (
 /obj/machinery/light{
@@ -2860,7 +2949,7 @@
 	name = "Blast Shields Control";
 	dir = 4
 	},
-/turf/simulated/shuttle/wall/dark/no_join,
+/turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/imp_sh_astraroom)
 "ZK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
@@ -3035,7 +3124,7 @@ ai
 KX
 pW
 TT
-Zp
+sQ
 nG
 ER
 WP
@@ -3071,7 +3160,7 @@ iO
 iO
 iO
 iO
-iO
+PB
 ER
 Wp
 Zp
@@ -3138,7 +3227,7 @@ WP
 WP
 BD
 BD
-BD
+RV
 RV
 Do
 Do
@@ -3235,8 +3324,8 @@ Do
 BD
 Zs
 Zs
-Zs
-Kd
+mL
+dE
 im
 Cm
 pH
@@ -3572,14 +3661,14 @@ jJ
 hZ
 gU
 FS
+kL
 zx
 zx
-zx
-zx
+pa
 ws
 Zs
 Zs
-Zs
+mL
 Kd
 df
 Cm
@@ -3613,7 +3702,7 @@ kW
 ok
 ta
 xS
-zx
+aR
 zx
 zx
 zx
@@ -3637,7 +3726,7 @@ gc
 MA
 MA
 MA
-MA
+gc
 qW
 Rg
 Kn
@@ -3668,7 +3757,7 @@ jp
 Xu
 ES
 SP
-vs
+jN
 SZ
 CG
 FE
@@ -3680,9 +3769,9 @@ TU
 wQ
 wQ
 ux
-ea
+ue
 Sh
-MA
+gc
 MA
 MA
 gc
@@ -3699,7 +3788,7 @@ vM
 gV
 ws
 ws
-ws
+hZ
 Br
 qq
 po
