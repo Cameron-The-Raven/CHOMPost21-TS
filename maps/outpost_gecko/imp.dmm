@@ -627,7 +627,9 @@
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_research)
 "ls" = (
-/obj/structure/construction/lightswitch,
+/obj/machinery/chemical_dispenser/bar_coffee/full{
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/shuttle/imp_sh_kitchen)
 "lt" = (
@@ -668,6 +670,18 @@
 	dir = 1
 	},
 /obj/structure/closet/syndicate/resources/everything,
+/obj/structure/closet/syndicate/resources/everything,
+/obj/structure/closet/syndicate/resources/everything,
+/obj/structure/closet/walllocker_double{
+	pixel_y = 33
+	},
+/obj/fiftyspawner/osmium,
+/obj/fiftyspawner/osmium,
+/obj/fiftyspawner/graphite,
+/obj/fiftyspawner/graphite,
+/obj/item/stack/material/morphium{
+	amount = 50
+	},
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_research)
 "mH" = (
@@ -723,9 +737,12 @@
 	vore_respawn = 1
 	},
 /turf/simulated/floor/tiled/eris/cafe,
-/area/shuttle/imp_sh_engineering)
+/area/shuttle/imp_sh_medical)
 "ns" = (
 /obj/machinery/r_n_d/circuit_imprinter,
+/obj/structure/reagent_dispensers/acid{
+	pixel_x = 31
+	},
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_research)
 "nx" = (
@@ -813,7 +830,7 @@
 /area/shuttle/imp_sh_dorms)
 "ps" = (
 /obj/machinery/computer/cryopod/robot,
-/turf/simulated/shuttle/wall/dark,
+/turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/imp_sh_dorms)
 "pE" = (
 /obj/structure/table/gamblingtable,
@@ -2245,6 +2262,9 @@
 /obj/fiftyspawner/glass,
 /obj/fiftyspawner/glass,
 /obj/fiftyspawner/glass,
+/obj/item/clothing/glasses/welding,
+/obj/item/clothing/head/welding,
+/obj/item/tool/screwdriver/alien,
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_research)
 "Pl" = (
@@ -2276,6 +2296,8 @@
 /obj/item/storage/toolbox/mechanical,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/storage/toolbox/mechanical,
+/obj/item/clothing/head/welding,
+/obj/item/clothing/glasses/welding,
 /turf/simulated/floor/bmarble,
 /area/shuttle/imp_sh_engineering)
 "PV" = (
@@ -3150,7 +3172,7 @@ Zs
 Mu
 Zs
 Vp
-iO
+ls
 iO
 iO
 iO
@@ -3241,7 +3263,7 @@ ex
 iO
 iO
 iO
-ls
+iO
 Pl
 ER
 Nv
