@@ -303,30 +303,36 @@
 	sound_env = TUNNEL_ENCLOSED
 	icon_state = "orange"
 	always_unpowered = TRUE
+	flags = AREA_BLOCK_GHOST_SIGHT
+	haunted = TRUE
 /area/mine/unexplored/muriki/cave/deepdark
 	name = "\improper Muriki Underground"
 	sound_env = TUNNEL_ENCLOSED
 	icon_state = "yellow"
 	always_unpowered = TRUE
+	flags = AREA_BLOCK_GHOST_SIGHT
+	haunted = TRUE
 
 /area/submap/outpost21/cave_liminal_A
 	name = "\improper Come Closer"
 	icon_state = "red2"
-	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SECRET_NAME
+	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SECRET_NAME | AREA_BLOCK_GHOST_SIGHT
 	sound_env = SOUND_ENVIRONMENT_PSYCHOTIC
 	ambience = AMBIENCE_OTHERWORLDLY
 	base_turf = /turf/simulated/mineral/floor/muriki
+	haunted = TRUE
 
 /area/submap/outpost21/cave_liminal_B
 	name = "\improper GET OUT"
 	var/show_name = "GET OUT" // replaces name
 	icon_state = "red2"
-	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SECRET_NAME
+	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SECRET_NAME | AREA_BLOCK_GHOST_SIGHT
 	always_unpowered = FALSE
 	requires_power = FALSE
 	sound_env = SOUND_ENVIRONMENT_AUDITORIUM
 	ambience = AMBIENCE_MAINTENANCE
 	base_turf = /turf/simulated/mineral/floor/muriki
+	haunted = TRUE
 
 /area/submap/outpost21/cave_liminal_B/get_name()
 	return show_name
@@ -334,26 +340,29 @@
 /area/submap/outpost21/cave_red_A
 	name = "\improper Our Pulsing Mass"
 	icon_state = "red2"
-	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SECRET_NAME
+	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SECRET_NAME | AREA_BLOCK_GHOST_SIGHT
 	sound_env = SOUND_ENVIRONMENT_CAVE
 	ambience = AMBIENCE_OTHERWORLDLY
 	base_turf = /turf/simulated/mineral/floor/muriki
+	haunted = TRUE
 
 /area/submap/outpost21/cave_red_B
 	name = "\improper Inside Us"
-	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SECRET_NAME
+	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SECRET_NAME | AREA_BLOCK_GHOST_SIGHT
 	icon_state = "red2"
 	sound_env = SOUND_ENVIRONMENT_CAVE
 	ambience = AMBIENCE_OTHERWORLDLY
 	base_turf = /turf/simulated/mineral/floor/muriki
+	haunted = TRUE
 
 /area/submap/outpost21/cave_red_C
 	name = "\improper Touch Our Skin"
 	icon_state = "red2"
-	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SECRET_NAME
+	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SECRET_NAME | AREA_BLOCK_GHOST_SIGHT
 	sound_env = SOUND_ENVIRONMENT_CAVE
 	ambience = AMBIENCE_OTHERWORLDLY
 	base_turf = /turf/simulated/mineral/floor/muriki
+	haunted = TRUE
 
 
 //////////////////////////////////////////////////////////////
