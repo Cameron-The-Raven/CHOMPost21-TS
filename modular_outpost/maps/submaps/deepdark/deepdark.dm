@@ -31,6 +31,7 @@
 #include "lava_A.dmm"
 #include "lava_B.dmm"
 #include "biohazard_A.dmm"
+#include "crashed_ufo.dmm"
 #endif
 
 /datum/map_template/outpost21/muriki/caves_deepdark
@@ -295,6 +296,13 @@
 	discard_prob = 75
 	cost = 20
 
+/datum/map_template/outpost21/muriki/caves_deepdark_huge/crashed_ufo
+	name = "crashed ufo"
+	desc = "Crashed ufo."
+	mappath = "modular_outpost/maps/submaps/deepdark/crashed_ufo.dmm"
+	allow_duplicates = FALSE
+	discard_prob = 55
+	cost = 20
 
 //////////////////////////////////////////////////////////////
 // Area definitions
@@ -303,14 +311,14 @@
 	sound_env = TUNNEL_ENCLOSED
 	icon_state = "orange"
 	always_unpowered = TRUE
-	flags = AREA_BLOCK_GHOST_SIGHT
+	flags = AREA_BLOCK_GHOST_SIGHT | AREA_FORBID_EVENTS
 	haunted = TRUE
 /area/mine/unexplored/muriki/cave/deepdark
 	name = "\improper Muriki Underground"
 	sound_env = TUNNEL_ENCLOSED
 	icon_state = "yellow"
 	always_unpowered = TRUE
-	flags = AREA_BLOCK_GHOST_SIGHT
+	flags = AREA_BLOCK_GHOST_SIGHT | AREA_FORBID_EVENTS
 	haunted = TRUE
 
 /area/submap/outpost21/cave_liminal_A
@@ -364,6 +372,13 @@
 	base_turf = /turf/simulated/mineral/floor/muriki
 	haunted = TRUE
 
+/area/submap/outpost21/crashed_ufo
+	name = "\improper Unknown"
+	requires_power = FALSE
+	flags = AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SECRET_NAME | AREA_BLOCK_GHOST_SIGHT
+	base_turf = /turf/simulated/mineral/floor/muriki
+	sound_env = SOUND_ENVIRONMENT_STONEROOM
+	ambience = AMBIENCE_OTHERWORLDLY
 
 //////////////////////////////////////////////////////////////
 // Liminal area specialty controllers
