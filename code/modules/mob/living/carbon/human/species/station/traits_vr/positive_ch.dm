@@ -1,4 +1,4 @@
-/datum/trait/positive/linguist
+/datum/trait/positive/linguist //gwah. doing this so I can get a branch of the server because github is DUMB sometimes
 	name = "Master Linguist"
 	desc = "You are a master of languages! For whatever reason you might have, you are able to learn many more languages than others. Your language cap is 12 slots."
 	cost = 2
