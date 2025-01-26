@@ -338,7 +338,7 @@
 [i]Class[/i]: Installation
 [i]Transponder[/i]: Transmitting (CIV), ESHUI IFF
 [b]Notice[/b]: ESHUI Base, authorized personnel only"}
-	map_z = list(Z_LEVEL_OUTPOST_ASTEROID)
+	map_z = list(3) //IMP SPECIFIC. THIS IS A HORRIBLE HACK BECAUSE ITS A COMFY SHIP NOT A SPACE EXPLORATION BANANZA
 	extra_z_levels = list()
 
 /obj/effect/overmap/visitable/sector/murkiki_space/orbital_yard/Crossed(var/atom/movable/AM)
@@ -363,7 +363,7 @@
 		atc.msg(message)
 
 /obj/effect/overmap/visitable/sector/murkiki_space/orbital_yard/get_space_zlevels()
-	return list(Z_LEVEL_OUTPOST_ASTEROID)
+	return list(3) //Temp for imp
 
 
 
