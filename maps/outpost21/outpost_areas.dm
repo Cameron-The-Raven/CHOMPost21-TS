@@ -1025,13 +1025,13 @@
 	name = "\improper Facility Tunnels"
 	base_turf = /turf/simulated/mineral/floor/muriki
 	sound_env = TUNNEL_ENCLOSED
-	flags = AREA_BLOCK_GHOST_SIGHT
+	flags = AREA_BLOCK_GHOST_SIGHT | AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/mine/unexplored/muriki/cave
 	name = "\improper Muriki Caverns"
 	base_turf = /turf/simulated/mineral/floor/muriki
 	sound_env = TUNNEL_ENCLOSED
-	flags = AREA_BLOCK_GHOST_SIGHT
+	flags = AREA_BLOCK_GHOST_SIGHT | AREA_FLAG_IS_NOT_PERSISTENT
 
 //Subdivided areas because holy crap zas hates our map.
 //Basement. Dept.
@@ -1408,6 +1408,22 @@
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 	use_emergency_overlay = TRUE
 
+/area/maintenance/damaged_resleeverA
+	name = "\improper Collapsed Structure"
+	base_turf = /turf/simulated/open/force_indoor
+	icon_state = "maint_research_shuttle"
+	flags = RAD_SHIELDED | AREA_BLOCK_SUIT_SENSORS | AREA_FLAG_IS_NOT_PERSISTENT | AREA_BLOCK_TRACKING | AREA_FORBID_EVENTS | AREA_BLOCK_GHOST_SIGHT
+	requires_power = FALSE
+	haunted = TRUE
+
+/area/maintenance/damaged_resleeverB
+	name = "\improper Damaged Structure"
+	base_turf = /turf/simulated/open/force_indoor
+	icon_state = "maint_research_shuttle"
+	flags = RAD_SHIELDED | AREA_BLOCK_SUIT_SENSORS | AREA_FLAG_IS_NOT_PERSISTENT | AREA_BLOCK_TRACKING | AREA_FORBID_EVENTS | AREA_BLOCK_GHOST_SIGHT
+	requires_power = FALSE
+	haunted = TRUE
+
 /area/maintenance/wastedisposalnear
 	name = "\improper Near Waste Disposal Maintenance"
 	base_turf = /turf/simulated/mineral/floor/muriki
@@ -1743,7 +1759,7 @@
 	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/security/brig/lowobservation
-	name = "\improper Security Low Security Brig Observation"
+	name = "\improper Security Sparring Ring"
 	base_turf = /turf/simulated/open/force_indoor
 	icon_state = "security_sub"
 	holomap_color = HOLOMAP_AREACOLOR_SECURITY
@@ -2130,7 +2146,7 @@
 
 //
 //-----------------------------------------------------------------------
-//Offworld
+//Asteroid yard
 
 /area/offworld/asteroidyard/station/
 	sound_env = SMALL_ENCLOSED
@@ -2147,7 +2163,7 @@
 	ambience = AMBIENCE_SPACE
 
 /area/offworld/asteroidyard/external/get_gravity()
-	return 0
+	return FALSE
 
 /area/offworld/asteroidyard/external/yardzone
 	icon_state = "construction"
@@ -2252,6 +2268,39 @@
 
 //
 //-----------------------------------------------------------------------
+//Confinement beam
+/area/offworld/confinementbeam/station
+	sound_env = SMALL_ENCLOSED
+	ambience = AMBIENCE_MAINTENANCE
+	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
+
+/area/offworld/confinementbeam/station/access_shaft
+	name = "\improper Confinement Beam Access Shaft"
+	icon_state = "red"
+	holomap_color = HOLOMAP_AREACOLOR_HALLWAYS
+
+/area/offworld/confinementbeam/station/dockingbay
+	name = "\improper Confinement Beam Docking Arm"
+	icon_state = "decontamination"
+	sound_env = LARGE_ENCLOSED
+	ambience = AMBIENCE_HANGAR
+	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
+
+/area/offworld/confinementbeam/exterior
+	name = "\improper Confinement Beam Exterior"
+	icon_state = "red2"
+	sound_env = SPACE
+	ambience = AMBIENCE_OUTPOST21_SPACE
+	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
+	flags = AREA_BLOCK_GHOST_SIGHT
+	has_gravity = FALSE
+	base_turf = /turf/space
+
+/area/offworld/confinementbeam/exterior/get_gravity()
+	return FALSE
+
+//
+//-----------------------------------------------------------------------
 //Shuttles
 /area/shuttle/trawler
 	name = "\improper Mining Trawler"
@@ -2328,6 +2377,14 @@
 	name = "\improper Vox Vessel"
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
 
+
+// Confinement beam shuttle
+/area/shuttle/beamtransit
+	name = "\improper Engineering Ferry"
+	flags = AREA_FLAG_IS_NOT_PERSISTENT
+
+
+
 //
 // Vehicle interiors ---------------------------------------------------------------------
 //
@@ -2367,7 +2424,7 @@
 	base_turf = /turf/simulated/floor/flesh
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "blue"
-	flags = RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_BLOCK_TRACKING | AREA_BLOCK_GHOST_SIGHT | AREA_FORBID_EVENTS
+	flags = RAD_SHIELDED | AREA_BLOCK_SUIT_SENSORS | AREA_FLAG_IS_NOT_PERSISTENT | AREA_BLOCK_TRACKING | AREA_FORBID_EVENTS | AREA_BLOCK_GHOST_SIGHT
 	sound_env = SPACE
 	ambience = AMBIENCE_MEATZONE
 	music = 'sound/ambience/approaching_planet.ogg'
@@ -2380,10 +2437,11 @@
 	base_turf = /turf/simulated/floor/weird_things/dark
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "blue"
-	flags = RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_BLOCK_TRACKING | AREA_BLOCK_GHOST_SIGHT | AREA_FORBID_EVENTS
+	flags = RAD_SHIELDED | AREA_BLOCK_SUIT_SENSORS | AREA_FLAG_IS_NOT_PERSISTENT | AREA_BLOCK_TRACKING | AREA_FORBID_EVENTS | AREA_BLOCK_GHOST_SIGHT
 	sound_env = SPACE
 	ambience = AMBIENCE_FOREBODING
 	music = 'sound/ambience/ambisin1.ogg'
+	haunted = TRUE
 
 /area/virtual_reality/lighting // virtual reality, but cooler
 	dynamic_lighting = 1 // literally the only change, I just wanted neat lights for the hazard course.

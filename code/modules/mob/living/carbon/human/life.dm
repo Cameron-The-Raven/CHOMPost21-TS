@@ -185,31 +185,34 @@
 	var/anxietymedcount = 0 // DO NOT MIX THESE MEDS
 	var/seizuremedcount = 0
 	var/antihistaminescount = 0
-	if( bloodstr.get_reagent_amount(REAGENT_ID_QERRQUEM) > 0)
+	if( bloodstr.has_reagent(REAGENT_ID_QERRQUEM,0))
 		anxietymedcount += 1;
-	if( bloodstr.get_reagent_amount(REAGENT_ID_PAROXETINE) > 0)
-		anxietymedcount += 1;
-		seizuremedcount += 1;
-	if( bloodstr.get_reagent_amount(REAGENT_ID_CITALOPRAM) > 0)
+	if( bloodstr.has_reagent(REAGENT_ID_PAROXETINE,0))
 		anxietymedcount += 1;
 		seizuremedcount += 1;
-	if( bloodstr.get_reagent_amount(REAGENT_ID_METHYLPHENIDATE) > 0)
+	if( bloodstr.has_reagent(REAGENT_ID_CITALOPRAM,0))
 		anxietymedcount += 1;
 		seizuremedcount += 1;
-	if( bloodstr.get_reagent_amount(REAGENT_ID_TRICORDRAZINE) > 0) // startrek wiki says so
+	if( bloodstr.has_reagent(REAGENT_ID_METHYLPHENIDATE,0))
+		anxietymedcount += 1;
 		seizuremedcount += 1;
+	if( bloodstr.has_reagent(REAGENT_ID_TRICORDRAZINE,0)) // startrek wiki says so
+		seizuremedcount += 1;
+	if( bloodstr.has_reagent(REAGENT_ID_QUADCORD,0))
+		seizuremedcount += 1;
+		anxietymedcount += 1;
 	// lets check for any one of these... Faster than doing each one, as it'll trigger on the first one it finds instead of checking them all every time
-	if( bloodstr.get_reagent_amount(REAGENT_ID_INAPROVALINE) > 0 || bloodstr.get_reagent_amount(REAGENT_ID_MENTHOL) > 0 || bloodstr.get_reagent_amount(REAGENT_ID_ADRANOL) > 0 || bloodstr.get_reagent_amount(REAGENT_ID_IMMUNOSUPRIZINE) > 0 || bloodstr.get_reagent_amount(REAGENT_ID_MALISHQUALEM) > 0)
+	if( bloodstr.has_reagent(REAGENT_ID_INAPROVALINE,0) || bloodstr.has_reagent(REAGENT_ID_MENTHOL,0) || bloodstr.has_reagent(REAGENT_ID_ADRANOL,0) || bloodstr.has_reagent(REAGENT_ID_IMMUNOSUPRIZINE,0) || bloodstr.has_reagent(REAGENT_ID_MALISHQUALEM,0))
 		antihistaminescount += 1; // there is no harm to stacking them as an allergy med, except their own overdoses anyway
 
 	// if no hazardous meds are mixed... just let any of the other ones work...
 	if( anxietymedcount == 0)
-		if( bloodstr.get_reagent_amount(REAGENT_ID_ADRANOL) > 0)
+		if( bloodstr.has_reagent(REAGENT_ID_ADRANOL,0))
 			anxietymedcount = 1;
-		if( bloodstr.get_reagent_amount(REAGENT_ID_NICOTINE) > 0)
+		if( bloodstr.has_reagent(REAGENT_ID_NICOTINE,0))
 			anxietymedcount = 1;
 			antihistaminescount += 1;
-		if( ingested.get_reagent_amount(REAGENT_ID_TEA) > 0)
+		if( ingested.has_reagent(REAGENT_ID_TEA,0))
 			anxietymedcount = 1;
 			antihistaminescount += 1;
 
@@ -219,7 +222,7 @@
 			stuttering = max(35, stuttering)
 			adjustHalLoss(2)
 			make_jittery(6)
-			if(prob(3))
+			if(prob(2))
 				to_chat(src, "<font color='red'>Everything feels wrong.</font>")
 				hallucination = 25
 				emote("twitch")
@@ -398,7 +401,22 @@
 
 	if(stat != DEAD) //CHOMPadd: Until I find where nutrion heal code is anyway
 		if((mRegen in mutations))
-			heal_organ_damage(0.2,0.2)
+			// Outpost 21 edit begin - Regen now heals IB
+			var/heal = rand(0.2,1.3)
+			if(prob(50))
+				for(var/obj/item/organ/external/O in bad_external_organs)
+					for(var/datum/wound/W in O.wounds)
+						if(W.bleeding())
+							W.damage = max(W.damage - heal, 0)
+							if(W.damage <= 0)
+								O.wounds -= W
+						if(W.internal)
+							W.damage = max(W.damage - heal, 0)
+							if(W.damage <= 0)
+								O.wounds -= W
+			else
+				heal_organ_damage(heal,heal)
+			// Outpost 21 edit end
 
 	/* Traitgenes edit - replaced by trait's handle_environment()
 	// DNA2 - Gene processing.
@@ -507,11 +525,11 @@
 					to_chat(src, span_warning("You feel horribly ill."))
 					AdjustWeakened(3)
 				if(prob(5) && internal_organs.len)
-					// Outpost 21 edit begin - organ mutations
+					// CHOMPedit begin - organ mutations
 					if(prob(2))
 						// random organ time!
 						random_malignant_organ(TRUE,FALSE,prob(40))
-					// Outpost 21 edit end
+					// CHOMPedit end
 					else
 						I = pick(internal_organs) //Internal organ damage...Not good. Not good at all.
 						if(istype(I)) I.add_autopsy_data("Radiation Induced Cancerous Growth", damage)
@@ -544,11 +562,10 @@
 					to_chat(src, span_critical("Your entire body feels like it's on fire!"))
 					adjustHalLoss(5)
 				if(prob(10) && internal_organs.len)
-					// Outpost 21 edit begin - organ mutations
 					if(prob(2))
-						// random organ time!
+						// CHOMPedit begin - organ mutations
 						random_malignant_organ(TRUE,FALSE,prob(60))
-					// Outpost 21 edit end
+					// CHOMPedit end
 					else
 						I = pick(internal_organs) //Internal organ damage...Not good. Not good at all.
 						if(istype(I)) I.add_autopsy_data("Radiation Induced Cancerous Growth", damage)
@@ -581,11 +598,11 @@
 					to_chat(src, span_danger("Your hand won't respond properly, you drop what you're holding!"))
 					drop_item()
 				if(internal_organs.len)
-					// Outpost 21 edit begin - organ mutations
+					// CHOMPedit begin - organ mutations
 					if(prob(2))
 						// random organ time!
 						random_malignant_organ(prob(40),FALSE,TRUE)
-					// Outpost 21 edit end
+					// CHOMPedit end
 					else
 						I = pick(internal_organs) //Internal organ damage...Not good. Not good at all.
 						if(istype(I)) I.add_autopsy_data("Radiation Induced Cancerous Growth", damage * species.radiation_mod * RADIATION_SPEED_COEFFICIENT)

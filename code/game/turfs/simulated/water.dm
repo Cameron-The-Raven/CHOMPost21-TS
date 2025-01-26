@@ -3,7 +3,7 @@
 	name = "shallow water"
 	desc = "A body of water.  It seems shallow enough to walk through, if needed."
 	icon = 'icons/turf/outdoors.dmi'
-	icon_state = "seashallow" // So it shows up in the map editor as water.
+	icon_state = "sand" // So it shows up in the map editor as water. // Outpost 21 edit - CI wants this fixed
 	var/water_icon = 'icons/turf/outdoors.dmi'
 	var/water_state = "water_shallow"
 	var/under_state = "rock"
@@ -106,7 +106,7 @@
 	return return_air() // Otherwise their head is above the water, so get the air from the atmosphere instead.
 
 /turf/simulated/floor/water/Entered(atom/movable/AM, atom/oldloc)
-	if(istype(AM, /mob/living))
+	if(isliving(AM))
 		var/mob/living/L = AM
 		// Outpost 21 edit - No splishy splashy
 		if(L.is_incorporeal())
@@ -121,7 +121,7 @@
 	..()
 
 /turf/simulated/floor/water/Exited(atom/movable/AM, atom/newloc)
-	if(istype(AM, /mob/living))
+	if(isliving(AM))
 		var/mob/living/L = AM
 		// Outpost 21 edit begin - No splishy splashy
 		if(L.is_incorporeal())
@@ -255,7 +255,7 @@ var/list/shoreline_icon_cache = list()
 
 /turf/simulated/floor/water/contaminated/Entered(atom/movable/AM, atom/oldloc)
 	..()
-	if(istype(AM, /mob/living))
+	if(isliving(AM))
 		var/mob/living/L = AM
 		if(L.isSynthetic())
 			return
@@ -277,7 +277,7 @@ var/list/shoreline_icon_cache = list()
 	return "bloodshallow"
 
 /turf/simulated/floor/water/blood/Entered(atom/movable/AM, atom/oldloc)
-	if(istype(AM, /mob/living))
+	if(isliving(AM))
 		var/mob/living/L = AM
 		L.update_water()
 		if(L.check_submerged() <= 0)

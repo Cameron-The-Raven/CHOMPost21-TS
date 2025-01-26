@@ -146,7 +146,7 @@
 
 		var/fullness = M.nutrition + (M.reagents.get_reagent_amount(REAGENT_ID_NUTRIMENT) * 25)
 		if(M == user)								//If you're eating it yourself
-			if(istype(M,/mob/living/carbon/human))
+			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(!H.check_has_mouth())
 					// to_chat(user, "Where do you intend to put \the [src]? You don't have a mouth!")
@@ -190,7 +190,7 @@
 			return ..()
 
 		else
-			if(istype(M,/mob/living/carbon/human))
+			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(!H.check_has_mouth())
 					// to_chat(user, "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!")
@@ -1473,7 +1473,7 @@
 	nutriment_desc = list("bun" = 2, "clown shoe" = 3)
 	bitesize = 2
 
-// Outpost 21 edit begin - honkwork infection
+// CHOMPedit begin - honkwork infection
 /obj/item/reagent_containers/food/snacks/clownburger/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 2) // needed to call On_Consume()... Is this actually an issue?
@@ -1483,7 +1483,7 @@
 		var/mob/living/carbon/human/H = user
 		H.malignant_organ_spawn( /obj/item/organ/internal/malignant/parasite/honker )
 	. = ..()
-// Outpost 21 edit end
+// CHOMPedit end
 
 /obj/item/reagent_containers/food/snacks/mimeburger
 	name = JOB_MIME + " Burger"
@@ -1542,6 +1542,14 @@
 	. = ..()
 	new/obj/effect/decal/cleanable/pie_smudge(src.loc)
 	src.visible_message(span_danger("\The [src.name] splats."),span_danger("You hear a splat."))
+	// Outpost 21 edit begin - Pie splat
+	if(isliving(hit_atom))
+		var/mob/living/L = hit_atom
+		L.Blind(5)
+		L.Weaken(2)
+		L.Stun(2)
+		L.Life() // Instant feedback to player
+	// Outpost 21 edit end
 	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/berryclafoutis
@@ -2039,7 +2047,7 @@
 	H.real_name = H.species.get_random_name()
 	H.name = H.real_name
 	H.low_sorting_priority = TRUE
-	H.species.produceCopy(H.species.traits.Copy(),H,null,FALSE) // Traitgenes edit - Make the spawned monkeys have unique species datums. Apparently Initilize() doesn't catch it... - Willbird
+	H.species.produceCopy(H.species.traits.Copy(),H,null,FALSE) // Make the spawned monkeys have unique species datums. Apparently Initilize() doesn't catch it...
 	if(ismob(loc))
 		var/mob/M = loc
 		M.unEquip(src)
@@ -2091,27 +2099,27 @@
 
 /obj/item/reagent_containers/food/snacks/monkeycube/farwacube
 	name = "farwa cube"
-	monkey_type = "Farwa"
+	monkey_type = SPECIES_MONKEY_TAJ
 
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/farwacube
 	name = "farwa cube"
-	monkey_type = "Farwa"
+	monkey_type = SPECIES_MONKEY_TAJ
 
 /obj/item/reagent_containers/food/snacks/monkeycube/stokcube
 	name = "stok cube"
-	monkey_type = "Stok"
+	monkey_type = SPECIES_MONKEY_UNATHI
 
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/stokcube
 	name = "stok cube"
-	monkey_type = "Stok"
+	monkey_type = SPECIES_MONKEY_UNATHI
 
 /obj/item/reagent_containers/food/snacks/monkeycube/neaeracube
 	name = "neaera cube"
-	monkey_type = "Neaera"
+	monkey_type = SPECIES_MONKEY_SKRELL
 
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube
 	name = "neaera cube"
-	monkey_type = "Neaera"
+	monkey_type = SPECIES_MONKEY_SKRELL
 
 /obj/item/reagent_containers/food/snacks/spellburger
 	name = "Spell Burger"

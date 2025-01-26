@@ -10,7 +10,7 @@ var/list/table_icon_cache = list()
 	climbable = TRUE
 	layer = TABLE_LAYER
 	throwpass = 1
-	surgery_odds = 50 //VOREStation Edit
+	surgery_odds = 90 // Outpost 21 edit - Buffing ghetto surgery
 	var/flipped = 0
 	var/maxhealth = 10
 	var/health = 10
@@ -166,7 +166,7 @@ var/list/table_icon_cache = list()
 	return ..()
 
 /obj/structure/table/attack_hand(mob/user as mob)
-	if(istype(user, /mob/living/carbon/human))
+	if(ishuman(user))
 		var/mob/living/carbon/human/X = user
 		if(istype(X.species, /datum/species/xenos))
 			src.attack_alien(user)

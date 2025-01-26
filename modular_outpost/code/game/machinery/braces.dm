@@ -4,14 +4,14 @@
 	name = "maintenance jack"
 	desc = "A special crowbar that can be used to safely remove airlock braces from airlocks."
 	w_class = ITEMSIZE_SMALL
-	icon = 'icons/obj/tools_op.dmi'
+	icon = 'modular_outpost/icons/obj/tools.dmi'
 	icon_state = "maintenance_jack"
 	throwforce = 7
 	force = 17.5 //It has a hammer head, should probably do some more damage. - Cirra
 	pry = 1
 	toolspeed = 1
 	tool_qualities = list(TOOL_CROWBAR)
-	origin_tech = list(TECH_ENGINEERING = 1)
+	origin_tech = list(TECH_ENGINEERING = 2, TECH_COMBAT = 1)
 	matter = list(MAT_DURASTEEL = 50)
 
 
@@ -20,11 +20,12 @@
 	name = "airlock brace"
 	desc = "A sturdy device that can be attached to an airlock to reinforce it and provide additional security."
 	w_class = ITEMSIZE_LARGE
-	icon = 'icons/obj/airlock_machines_op.dmi'
+	icon = 'modular_outpost/icons/obj/airlock_machines.dmi'
 	icon_state = "brace_open"
 	var/cur_health
 	var/max_health = 450
 	var/obj/machinery/door/airlock/airlock = null
+	origin_tech = list(TECH_ENGINEERING = 2)
 
 
 

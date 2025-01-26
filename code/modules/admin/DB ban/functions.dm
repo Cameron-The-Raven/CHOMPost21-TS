@@ -176,6 +176,7 @@
 		reason = query.item[3]
 	else
 		to_chat(usr, span_filter_adminlog("Invalid ban id. Contact the database admin"))
+		qdel(query) //CHOMPEdit TGSQL
 		return
 	qdel(query) //CHOMPEdit TGSQL
 	reason = sql_sanitize_text(reason)
@@ -488,4 +489,4 @@
 			output += "</table></div>"
 			qdel(select_query) //CHOMPEdit TGSQL
 
-	usr << browse(output,"window=lookupbans;size=900x700")
+	usr << browse("<html>[output]</html>","window=lookupbans;size=900x700")

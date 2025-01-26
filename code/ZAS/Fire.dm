@@ -51,14 +51,14 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 				fuel_objs -= fuel
 	else
 		for(var/turf/simulated/T in fire_tiles)
-			// Outpost 21 edit begin - Lingering fires
-			if(istype(T.fire) && !istype(T.fire,/obj/fire/lingering))
+			// CHOMPEdit - Lingering fires
+			if(istype(T.fire) && !istype(T.fire, /obj/fire/lingering))
 				qdel(T.fire)
-				if(prob(15))
+				if(prob(10))
 					T.lingering_fire(1)
 				else
 					T.fire = null
-			// Outpost 21 edit end
+			// CHOMPEdit End
 		fire_tiles.Cut()
 		fuel_objs.Cut()
 
@@ -91,13 +91,12 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	return 0
 
 /turf/simulated/create_fire(fl)
-	// Outpost 21 edit begin - Lingering fire
-	if(fire && istype(fire,/obj/fire/lingering))
+	// CHOMPAdd - Lingering fires
+	if(istype(fire) && istype(fire, /obj/fire/lingering))
 		var/obj/fire/F = fire
-		F.RemoveFire() // sets T.fire to null
+		F.RemoveFire()
 		qdel(F)
-	// Outpost 21 edit end
-
+	// CHOMPEnd - Lingering fires
 	if(fire)
 		fire.firelevel = max(fl, fire.firelevel)
 		return 1
@@ -177,6 +176,8 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 				//reduce firelevel.
 				if(enemy_tile.fire_protection > world.time-30)
 					firelevel -= 1.5
+					if(firelevel < 0)
+						firelevel = 0
 					continue
 
 				//Spread the fire.
@@ -319,7 +320,8 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 			zone.remove_liquidfuel(used_liquid_fuel, !check_combustability())
 
 		//calculate the energy produced by the reaction and then set the new temperature of the mix
-		temperature = (starting_energy + vsc.fire_fuel_energy_release * (used_gas_fuel + used_liquid_fuel)) / heat_capacity()
+		if(heat_capacity() > 0)
+			temperature = min((starting_energy + vsc.fire_fuel_energy_release * (used_gas_fuel + used_liquid_fuel)) / heat_capacity(), MAX_ATMOS_TEMPERATURE)
 		update_values()
 
 		#ifdef FIREDBG

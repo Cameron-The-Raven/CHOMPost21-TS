@@ -132,7 +132,7 @@
 		using = new /obj/screen()
 		using.name = "mov_intent"
 		using.icon = HUD.ui_style
-		using.icon_state = (m_intent == "run" ? "running" : "walking")
+		using.icon_state = (m_intent == I_RUN ? "running" : "walking")
 		using.screen_loc = ui_movi
 		using.color = HUD.ui_color
 		using.alpha = HUD.ui_alpha
@@ -428,7 +428,7 @@
 
 /obj/screen/borer/chems
 	name = "chemical storage"
-	icon = 'icons/mob/screen1_op.dmi'
+	icon = 'modular_outpost/icons/mob/screen1.dmi'
 	icon_state = "power_display"
 // Outpost 21 edit end
 

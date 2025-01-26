@@ -6,7 +6,10 @@
 #define Z_LEVEL_OUTPOST_CENTCOM						5
 #define Z_LEVEL_OUTPOST_MISC 						6
 #define Z_LEVEL_OUTPOST_ASTEROID 					7
+//efine Z_LEVEL_OUTPOST_PROSPECTOR 					8
+//efine Z_LEVEL_OUTPOST_SURVEY	 					9
 #define Z_LEVEL_OUTPOST_VR		 					8
+#define Z_LEVEL_OUTPOST_CONFINEMENTBEAM				9
 //Ensure these stay updated with map and z-level changes - Ignus
 /datum/map/outpost
 	name = "Outpost 21"
@@ -61,6 +64,7 @@
 							NETWORK_PRISON,
 							NETWORK_SECURITY,
 							NETWORK_INTERROGATION,
+							NETWORK_TELECOM,
 							NETWORK_OUTSIDE
 							)
 	secondary_networks = list(
@@ -75,7 +79,7 @@
 	usable_email_tlds = list("internalmail.es")
 	allowed_spawns = list("Elevator", "Cryogenic Storage", "Cyborg Storage", "On-Site Dorms")
 	default_skybox = /datum/skybox_settings/outpost21
-	unit_test_z_levels = list(Z_LEVEL_OUTPOST_DEEPDARK,Z_LEVEL_OUTPOST_BASEMENT,Z_LEVEL_OUTPOST_SURFACE,Z_LEVEL_OUTPOST_UPPER,Z_LEVEL_OUTPOST_ASTEROID)
+	unit_test_z_levels = list(Z_LEVEL_OUTPOST_DEEPDARK,Z_LEVEL_OUTPOST_BASEMENT,Z_LEVEL_OUTPOST_SURFACE,Z_LEVEL_OUTPOST_UPPER,Z_LEVEL_OUTPOST_ASTEROID,Z_LEVEL_OUTPOST_CONFINEMENTBEAM)
 	unit_test_exempt_areas = list()
 	unit_test_exempt_from_atmos = list(	/area/muriki/processor,
 										/area/muriki/processor/hall,
@@ -147,6 +151,7 @@
 										// The asteroid yard's exterior does not need scrubbers and vents
 										/area/offworld/asteroidyard/external,
 										/area/offworld/asteroidyard/external/yardzone,
+										/area/offworld/confinementbeam/exterior,
 										// Actual unit test exceptions
 										/area/comms,
 										/area/muriki/tramstation/waste,
@@ -158,7 +163,9 @@
 										/area/engineering/gravgen,
 										/area/muriki/septic,
 										/area/medical/voxlab/airgap,
-										/area/rnd/xenobiology/lost)
+										/area/rnd/xenobiology/lost,
+										/area/maintenance/damaged_resleeverA,
+										/area/maintenance/damaged_resleeverB)
 	unit_test_exempt_from_apc = list(	/area/muriki/processor,
 										/area/muriki/processor/hall,
 										/area/muriki/processor/gland/airmix,
@@ -208,7 +215,9 @@
 										// Actual unit test exceptions
 										/area/muriki/lowerelev,
 										/area/muriki/lowerevac,
-										/area/muriki/crystal)
+										/area/muriki/crystal,
+										/area/maintenance/damaged_resleeverA,
+										/area/maintenance/damaged_resleeverB)
 
 	planet_datums_to_make = list(/datum/planet/muriki)
 
@@ -218,7 +227,8 @@
 			Z_LEVEL_OUTPOST_BASEMENT,
 			Z_LEVEL_OUTPOST_SURFACE,
 			Z_LEVEL_OUTPOST_UPPER,
-			Z_LEVEL_OUTPOST_ASTEROID
+			Z_LEVEL_OUTPOST_ASTEROID,
+			Z_LEVEL_OUTPOST_CONFINEMENTBEAM
 		)
 
 	ai_shell_restricted = TRUE
@@ -227,8 +237,16 @@
 		Z_LEVEL_OUTPOST_DEEPDARK,
 		Z_LEVEL_OUTPOST_BASEMENT,
 		Z_LEVEL_OUTPOST_SURFACE,
-		Z_LEVEL_OUTPOST_UPPER
+		Z_LEVEL_OUTPOST_UPPER,
+		Z_LEVEL_OUTPOST_CONFINEMENTBEAM
 		)
+
+	confinement_beam_z_levels = list(
+		Z_LEVEL_OUTPOST_DEEPDARK,
+		Z_LEVEL_OUTPOST_BASEMENT,
+		Z_LEVEL_OUTPOST_SURFACE,
+		Z_LEVEL_OUTPOST_UPPER
+	)
 
 	station_uses_common_ore_only = TRUE
 	common_ores = list(ORE_MARBLE = 8, ORE_QUARTZ = 10, ORE_COPPER = 20, ORE_TIN = 15, ORE_BAUXITE = 15, ORE_URANIUM = 5, ORE_PLATINUM = 6, ORE_HEMATITE = 70, ORE_RUTILE = 15, ORE_CARBON = 70, ORE_DIAMOND = 1, ORE_GOLD = 6, ORE_SILVER = 5, ORE_PHORON = 1, ORE_LEAD = 35, ORE_VOPAL = 1, ORE_VERDANTIUM = 1, ORE_PAINITE = 1)
@@ -348,6 +366,47 @@
 	return list(3) //Temp for imp
 
 
+
+
+
+
+/obj/effect/overmap/visitable/sector/murkiki_space/confinementbeam
+	initial_generic_waypoints = list("confinementbeam_civ")
+	name = "Confinement Beam Platform"
+	scanner_desc = @{"[i]Registration[/i]: ES Orbital 21-04
+[i]Class[/i]: Confinement Beam
+[i]Transponder[/i]: Transmitting (ENG), ESHUI IFF
+[b]Notice[/b]: ESHUI Base, authorized personnel only"}
+	map_z = list(Z_LEVEL_OUTPOST_CONFINEMENTBEAM)
+	extra_z_levels = list()
+
+/obj/effect/overmap/visitable/sector/murkiki_space/confinementbeam/Crossed(var/atom/movable/AM)
+	. = ..()
+	announce_atc(AM,going = FALSE)
+
+/obj/effect/overmap/visitable/sector/murkiki_space/confinementbeam/Uncrossed(var/atom/movable/AM)
+	. = ..()
+	announce_atc(AM,going = TRUE)
+
+/obj/effect/overmap/visitable/sector/murkiki_space/confinementbeam/proc/announce_atc(var/atom/movable/AM, var/going = FALSE)
+	var/message = "Sensor contact for vessel '[AM.name]' has [going ? "left" : "entered"] ATC control area."
+	//For landables, we need to see if their shuttle is cloaked
+	if(istype(AM, /obj/effect/overmap/visitable/ship/landable))
+		var/obj/effect/overmap/visitable/ship/landable/SL = AM //Phew
+		var/datum/shuttle/autodock/multi/shuttle = SSshuttles.shuttles[SL.shuttle]
+		if(!istype(shuttle) || !shuttle.cloaked) //Not a multishuttle (the only kind that can cloak) or not cloaked
+			atc.msg(message)
+
+	//For ships, it's safe to assume they're big enough to not be sneaky
+	else if(istype(AM, /obj/effect/overmap/visitable/ship))
+		atc.msg(message)
+
+/obj/effect/overmap/visitable/sector/murkiki_space/confinementbeam/get_space_zlevels()
+	return list(Z_LEVEL_OUTPOST_CONFINEMENTBEAM)
+
+
+
+
 // Skybox Settings
 /datum/skybox_settings/outpost21
 	icon_state = "dyable"
@@ -408,18 +467,24 @@
 /datum/map_z_level/outpost/misc
 	z = Z_LEVEL_OUTPOST_MISC
 	name = "Misc"
-	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_SEALED|MAP_LEVEL_BELOW_BLOCKED
+	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_SEALED|MAP_LEVEL_BELOW_BLOCKED
 
 /datum/map_z_level/outpost/asteroid_mine
 	z = Z_LEVEL_OUTPOST_ASTEROID
 	name = "Asteroid"
-	transit_chance = 100 // temp just loop through space
+	transit_chance = 40
 	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_PERSIST|MAP_LEVEL_BELOW_BLOCKED|MAP_LEVEL_MAPPABLE|MAP_LEVEL_EVENTS|MAP_LEVEL_VORESPAWN
 
-/datum/map_z_level/outpost/misc
+/datum/map_z_level/outpost/vr
 	z = Z_LEVEL_OUTPOST_VR
 	name = "Virtual"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_SEALED|MAP_LEVEL_BELOW_BLOCKED
+
+/datum/map_z_level/outpost/confinementbeam
+	z = Z_LEVEL_OUTPOST_CONFINEMENTBEAM
+	name = "Confinementbeam"
+	transit_chance = 40
+	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT|MAP_LEVEL_CONSOLES|MAP_LEVEL_BELOW_BLOCKED|MAP_LEVEL_MAPPABLE|MAP_LEVEL_VORESPAWN
 
 
 //Unit test stuff.

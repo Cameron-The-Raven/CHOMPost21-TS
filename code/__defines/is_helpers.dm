@@ -42,6 +42,7 @@
 #define iscorgi(A)		istype(A, /mob/living/simple_mob/animal/passive/dog/corgi)
 #define isslime(A)		istype(A, /mob/living/simple_mob/slime)
 #define isxeno(A)		istype(A, /mob/living/simple_mob/animal/space/alien)
+#define issimplekin(A)	istype(A, /mob/living/simple_mob/shadekin)
 #define ismetroid(A)	istype(A, /mob/living/simple_mob/metroid) //CHOMP Addition
 
 #define iscarbon(A)		istype(A, /mob/living/carbon)
@@ -72,3 +73,6 @@
 
 // Diveable water
 #define isdiveablewater(A)	istype(A, /turf/simulated/floor/water/deep/ocean/diving)
+
+/// NaN isn't a number, damn it. Infinity is a problem too.
+#define isnum_safe(x) ( isnum((x)) && !isnan((x)) && !isinf((x)) )

@@ -147,7 +147,7 @@
 	using = new /obj/screen()
 	using.name = "mov_intent"
 	using.icon = ui_style
-	using.icon_state = (m_intent == "run" ? "running" : "walking")
+	using.icon_state = (m_intent == I_RUN ? "running" : "walking")
 	using.screen_loc = ui_movi
 	using.color = ui_color
 	using.alpha = ui_alpha
@@ -333,7 +333,7 @@
 	// Outpost 21 edit begin - Pai death alarm
 	using = new /obj/screen/pai()
 	using.name = "death alarm"
-	using.icon = 'icons/mob/pai_hud_op.dmi'
+	using.icon = 'modular_outpost/icons/mob/pai_hud.dmi'
 	using.base_state = "death_alarm"
 	using.screen_loc = "WEST:6,SOUTH+5:2"
 	using.color = ui_color

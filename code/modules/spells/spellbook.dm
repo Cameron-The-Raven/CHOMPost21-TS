@@ -1,7 +1,7 @@
 /obj/item/spellbook
 	name = "spell book"
 	desc = "The legendary book of spells of the wizard."
-	icon = 'icons/obj/library_op.dmi' // Outpost 21 edit - spellbook
+	icon = 'modular_outpost/icons/obj/library.dmi' // Outpost 21 edit - spellbook
 	icon_state ="spellbook"
 	throw_speed = 1
 	throw_range = 5
@@ -80,7 +80,7 @@
 		// END AUTOFIX
 		if(op)
 			dat += "<A href='byond://?src=\ref[src];spell_choice=rememorize'>Re-memorize Spells</A><BR>"
-	user << browse(dat, "window=radio")
+	user << browse("<html>[dat]</html>", "window=radio")
 	onclose(user, "radio")
 	return
 
@@ -90,7 +90,7 @@
 
 	if(H.stat || H.restrained())
 		return
-	if(!istype(H, /mob/living/carbon/human))
+	if(!ishuman(H))
 		return 1
 
 	if(H.mind.special_role == JOB_APPRENTICE)
@@ -412,7 +412,7 @@
 	desc = "This book is more horse than your mind has room for."
 
 /obj/item/spellbook/oneuse/horsemask/recoil(mob/living/carbon/user as mob)
-	if(istype(user, /mob/living/carbon/human))
+	if(ishuman(user))
 		to_chat(user, "<font size='15' color='red'><b>HOR-SIE HAS RISEN</b></font>")
 		var/obj/item/clothing/mask/horsehead/magichead = new /obj/item/clothing/mask/horsehead
 		magichead.canremove = FALSE		//curses!

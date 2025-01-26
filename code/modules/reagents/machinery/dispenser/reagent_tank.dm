@@ -164,8 +164,8 @@
 	icon_state = "he3"
 	amount_per_transfer_from_this = 10
 
-/obj/structure/reagent_dispenser/he3/Initialize()
-	..()
+/obj/structure/reagent_dispensers/he3/Initialize()
+	. = ..()
 	reagents.add_reagent(REAGENT_ID_HELIUM3,1000)
 
 /*
@@ -356,7 +356,7 @@
 /obj/structure/reagent_dispensers/water_cooler/Initialize()
 	. = ..()
 	if(bottle)
-		reagents.add_reagent(REAGENT_ID_WATER,2000)
+		reagents.add_reagent(REAGENT_ID_WATER,1000) // Outpost 21 edit - nerfed from 2000 to 1000
 	update_icon()
 
 /obj/structure/reagent_dispensers/water_cooler/examine(mob/user)

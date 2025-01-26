@@ -16,8 +16,8 @@
 	flags = OPENCONTAINER
 
 
-/obj/item/slime_extract/New()
-	..()
+/obj/item/slime_extract/Initialize()
+	. = ..()
 	create_reagents(60)
 
 /obj/item/slime_extract/attackby(obj/item/O, mob/user)
@@ -45,10 +45,6 @@
 		. += "This extract has [uses] more use\s."
 	else
 		. += "This extract is inert."
-	// Outpost 21 edit begin - Selling slime cores
-	if(supply_conversion_value)
-		. += "Sells for about [supply_conversion_value] supply points."
-	// Outpost 21 edit end
 
 /decl/chemical_reaction/instant/slime
 	var/required = null
@@ -1414,7 +1410,7 @@
 	id = "m_ruby_brute_juice"
 	result = REAGENT_ID_BERSERKMED
 	required_reagents = list(REAGENT_ID_WATER = 5)
-	result_amount = 30
+	result_amount = 20 // Outpost 21 edit - Reduced from 30
 	required = /obj/item/slime_extract/ruby
 
 

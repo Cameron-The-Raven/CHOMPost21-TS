@@ -228,6 +228,8 @@ FIRE ALARM
 	if(!(working))
 		return
 	var/area/area = get_area(src)
+	if(!firewarn && !alarms_hidden) // Outpost 21 edit engineering announce
+		global_announcer.autosay( "Tripped [area]", "Fire Alarm Monitor", "Engineering")
 	for(var/obj/machinery/firealarm/FA in area)
 		fire_alarm.triggerAlarm(loc, FA, duration, hidden = alarms_hidden)
 		FA.soundloop.start() // CHOMPEdit: Soundloop
@@ -278,7 +280,7 @@ Just a object used in constructing fire alarms
 	ASSERT(isarea(A))
 	var/d1
 	var/d2
-	if(istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon/ai))
+	if(ishuman(user) || isAI(user))
 
 		if(A.party)
 			d1 = text("<A href='byond://?src=\ref[];reset=1'>No Party :(</A>", src)
@@ -329,7 +331,7 @@ Just a object used in constructing fire alarms
 	..()
 	if(usr.stat || stat & (BROKEN|NOPOWER))
 		return
-	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
+	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(loc, /turf))) || (isAI(usr)))
 		usr.machine = src
 		if(href_list["reset"])
 			reset()

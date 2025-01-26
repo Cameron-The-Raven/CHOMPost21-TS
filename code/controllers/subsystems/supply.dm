@@ -34,7 +34,7 @@ SUBSYSTEM_DEF(supply)
 		else
 			qdel(P)
 
-	return SS_INIT_SUCCESS // CHOMPEdit
+	return SS_INIT_SUCCESS
 
 // Supply shuttle ticker - handles supply point regeneration. Just add points over time.
 /datum/controller/subsystem/supply/fire()
@@ -111,7 +111,7 @@ SUBSYSTEM_DEF(supply)
 						var/obj/item/stack/P = A
 						var/datum/material/mat = P.get_material()
 						if(mat?.supply_conversion_value)
-							EC.contents[EC.contents.len]["value"] = P.get_amount() * mat.supply_conversion_value
+							EC.contents[EC.contents.len]["value"] = get_item_sale_value(A) // Outpost 21 edit - Amazonk UI, was P.get_amount() * mat.supply_conversion_value
 						EC.contents[EC.contents.len]["quantity"] = P.get_amount()
 						EC.value += EC.contents[EC.contents.len]["value"]
 
@@ -119,38 +119,87 @@ SUBSYSTEM_DEF(supply)
 					//Sell spacebucks
 					if(istype(A, /obj/item/spacecash))
 						var/obj/item/spacecash/cashmoney = A
-						EC.contents[EC.contents.len]["value"] = (cashmoney.worth * points_per_money) * cash_tax // Outpost 21 edit - We have higher money conversion, but taxes on raw cash export
+						EC.contents[EC.contents.len]["value"] = get_item_sale_value(A) // Outpost 21 edit - Amazonk UI, was (cashmoney.worth * points_per_money) * cash_tax // Outpost 21 edit - We have higher money conversion, but taxes on raw cash export
 						EC.contents[EC.contents.len]["quantity"] = cashmoney.worth
 						EC.value += EC.contents[EC.contents.len]["value"]
 
+					if(istype(A, /obj/item/reagent_containers/glass/bottle/vaccine))
+						var/obj/item/reagent_containers/glass/bottle/vaccine/sale_bottle = A
+						if(!istype(CR, /obj/structure/closet/crate/freezer))
+							EC.contents = list(
+								"error" = "Error: Product was improperly packaged. Send conents in freezer crate to preserve contents for transport."
+							)
+						else if(sale_bottle.reagents.reagent_list.len != 1 || sale_bottle.reagents.get_reagent_amount(REAGENT_ID_VACCINE) < sale_bottle.volume)
+							EC.contents = list(
+								"error" = "Error: Tainted product in batch. Was opened, contaminated, or was full. Payment rendered null under terms of agreement."
+							)
+						else
+							EC.contents[EC.contents.len]["value"] = 5
+							EC.value += EC.contents[EC.contents.len]["value"]
+
 					// CHOMPAdd Start - Sell salvage
 					if(istype(A, /obj/item/salvage))
-						var/obj/item/salvage/salvagedStuff = A
-						EC.contents[EC.contents.len]["value"] = salvagedStuff.worth
+						//var/obj/item/salvage/salvagedStuff = A
+						EC.contents[EC.contents.len]["value"] = get_item_sale_value(A) // Outpost 21 edit - Amazonk UI, was salvagedStuff.worth
 						EC.value += EC.contents[EC.contents.len]["value"]
 					// CHOMPAdd End
 
 					// Outpost 21 edit begin - Selling slime cores
 					if(istype(A, /obj/item/slime_extract))
-						var/obj/item/slime_extract/slime_stuff = A
-						EC.contents[EC.contents.len]["value"] = slime_stuff.supply_conversion_value
+						//var/obj/item/slime_extract/slime_stuff = A
+						EC.contents[EC.contents.len]["value"] = get_item_sale_value(A) // Outpost 21 edit - Amazonk UI, was slime_stuff.supply_conversion_value
 						EC.value += EC.contents[EC.contents.len]["value"]
 					// Outpost 21 edit end
 
-					// Outpost 21 edit begin - Selling slime cores
+					// CHOMPedit begin - Selling engineered organs
 					if(istype(A, /obj/item/organ/internal))
 						var/obj/item/organ/internal/organ_stuff = A
 						if(!istype(CR,/obj/structure/closet/crate/freezer))
 							EC.contents = list(
-								"error" = "Error: Product was improperly packaged. Send contents in freezer crate to preserve contents for transport."
+								"error" = "Error: Product was improperly packaged. Send contents in freezer crate to preserve them for transport."
 							)
 						else if(organ_stuff.health != initial(organ_stuff.health) )
 							EC.contents = list(
 								"error" = "Error: Product was damaged on arrival."
 							)
 						else
-							EC.contents[EC.contents.len]["value"] = organ_stuff.supply_conversion_value
+							EC.contents[EC.contents.len]["value"] = get_item_sale_value(A) // Outpost 21 edit - Amazonk UI, was organ_stuff.supply_conversion_value
 							EC.value += EC.contents[EC.contents.len]["value"]
+					// CHOMPedit end
+
+					// Outpost 21 edit begin - Selling vaccines
+					if(istype(A, /obj/item/reagent_containers/glass/bottle/vaccine))
+						var/obj/item/reagent_containers/glass/bottle/vaccine/sale_bottle = A
+						if(!istype(CR,/obj/structure/closet/crate/freezer))
+							EC.contents = list(
+								"error" = "Error: Product was improperly packaged. Send contents in freezer crate to preserve them for transport."
+							)
+						else if(sale_bottle.reagents.reagent_list.len != 1 || sale_bottle.reagents.get_reagent_amount( REAGENT_ID_VACCINE) < sale_bottle.volume)
+							EC.contents = list(
+								"error" = "Error: Tainted product in batch. Was opened, contaminated, or was not full. Payment rendered null under terms of agreement."
+							)
+						else
+							EC.contents[EC.contents.len]["value"] = get_item_sale_value(A) // Outpost 21 edit - Amazonk UI, was 5
+							EC.value += EC.contents[EC.contents.len]["value"]
+					// Outpost 21 edit end
+
+					// Outpost 21 edit begin - Selling food
+					if(istype(A, /obj/item/reagent_containers/food))
+						if(!istype(CR,/obj/structure/closet/crate/freezer))
+							EC.contents = list(
+								"error" = "Error: Product was improperly packaged. Send contents in freezer crate to preserve them for transport."
+							)
+						else
+							//var/obj/item/reagent_containers/food/food_stuff = A
+							EC.contents[EC.contents.len]["value"] = get_item_sale_value(A)
+							EC.value += EC.contents[EC.contents.len]["value"]
+					// Outpost 21 edit end
+
+					// Outpost 21 edit begin - Selling research samples
+					if(istype(A, /obj/item/research_sample))
+						//var/obj/item/research_sample/sample_stuff = A
+						EC.contents[EC.contents.len]["value"] = get_item_sale_value(A)
+						EC.value += EC.contents[EC.contents.len]["value"]
 					// Outpost 21 edit end
 
 			//Outpost 21 edit begin - Sell reagent tanks
@@ -169,9 +218,10 @@ SUBSYSTEM_DEF(supply)
 						var/actually_trying_bonus = FALSE
 						for(var/datum/reagent/R in tank.reagents.reagent_list)
 							// Update export values
+							var/reagent_value = get_reagent_sale_value(R)
 							EC.contents[++EC.contents.len] = list(
 								"object" = "\proper[R.name]",
-								"value" = FLOOR(R.volume, 1) * R.supply_conversion_value,
+								"value" = reagent_value,
 								"quantity" = FLOOR(R.volume, 1)
 							)
 							EC.value += EC.contents[EC.contents.len]["value"]
@@ -183,11 +233,11 @@ SUBSYSTEM_DEF(supply)
 								if(isnull(GLOB.refined_chems_sold[R.industrial_use]))
 									var/list/data = list()
 									data["units"] = FLOOR(R.volume, 1)
-									data["value"] = FLOOR(R.volume, 1) * R.supply_conversion_value
+									data["value"] = reagent_value
 									GLOB.refined_chems_sold[R.industrial_use] = data
 								else
 									GLOB.refined_chems_sold[R.industrial_use]["units"] += FLOOR(R.volume, 1)
-									GLOB.refined_chems_sold[R.industrial_use]["value"] += FLOOR(R.volume, 1) * R.supply_conversion_value
+									GLOB.refined_chems_sold[R.industrial_use]["value"] += reagent_value
 
 						if(actually_trying_bonus)
 							base_value += 5 // Discount on next tank bonus
@@ -481,3 +531,60 @@ SUBSYSTEM_DEF(supply)
 	var/ordered_at							// Date and time the order was requested at
 	var/approved_at							// Date and time the order was approved at
 	var/status								// [Requested, Accepted, Denied, Shipped]
+
+//Outpost 21 edit begin - Selling more objects, scanning and Amazonk UI
+/datum/controller/subsystem/supply/proc/get_item_sale_value(var/obj/item/A)
+	// cargo slip
+	if(istype(A,/obj/item/paper/manifest))
+		return points_per_slip
+	// Sell phoron and platinum
+	if(istype(A, /obj/item/stack))
+		var/obj/item/stack/P = A
+		var/datum/material/mat = P.get_material()
+		if(mat?.supply_conversion_value)
+			return P.get_amount() * mat.supply_conversion_value;
+		return 0
+	//Sell spacebucks
+	if(istype(A, /obj/item/spacecash))
+		var/obj/item/spacecash/cashmoney = A
+		return (cashmoney.worth * points_per_money) * cash_tax // Outpost 21 edit - We have higher money conversion, but taxes on raw cash export
+	// Sell salvage
+	if(istype(A, /obj/item/salvage))
+		var/obj/item/salvage/salvagedStuff = A
+		return salvagedStuff.worth
+	// Selling slime cores
+	if(istype(A, /obj/item/slime_extract))
+		var/obj/item/slime_extract/slime_stuff = A
+		return slime_stuff.supply_conversion_value
+	//  Selling organs
+	if(istype(A, /obj/item/organ/internal))
+		var/obj/item/organ/internal/organ_stuff = A
+		if(organ_stuff.health != initial(organ_stuff.health))
+			return 0
+		return organ_stuff.supply_conversion_value
+	// Selling vaccines
+	if(istype(A, /obj/item/reagent_containers/glass/bottle/vaccine))
+		return 5
+	// Selling food
+	if(istype(A, /obj/item/reagent_containers/food))
+		var/obj/item/reagent_containers/food/food_stuff = A
+		if(istype(A,/obj/item/reagent_containers/food/snacks))
+			var/obj/item/reagent_containers/food/snacks/S = food_stuff
+			if(S.bitecount > 0) // no nibbling
+				return 0
+		return food_stuff.price_tag // Converts old price system into supply point cost
+	// Selling research samples
+	if(istype(A, /obj/item/research_sample))
+		var/obj/item/research_sample/sample_stuff = A
+		var/level = 5
+		for(var/tech in sample_stuff.valid_techs)
+			level += sample_stuff.origin_tech["[tech]"] * 5
+		return level
+	return 0
+
+/datum/controller/subsystem/supply/proc/get_reagent_sale_value(var/datum/reagent/R)
+	return FLOOR(R.volume, 1) * R.supply_conversion_value
+
+/datum/controller/subsystem/supply/proc/points_to_cash(var/val)
+	return FLOOR((val / points_per_money) / cash_tax, 1) // Undoes taxes, 500T == 500T when scanned
+//Outpost 21 edit end

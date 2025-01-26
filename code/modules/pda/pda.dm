@@ -47,6 +47,7 @@ var/global/list/obj/item/pda/PDAs = list()
 	var/list/programs = list(
 		new/datum/data/pda/app/main_menu,
 		new/datum/data/pda/app/notekeeper,
+		new/datum/data/pda/app/timeclock, //CHOMPEdit: Add the timeclock to default apps
 		new/datum/data/pda/app/news,
 		// Outpost 21 addition begin - New apps
 		new/datum/data/pda/app/weather,
@@ -479,10 +480,10 @@ var/global/list/obj/item/pda/PDAs = list()
 
 /obj/item/pda/Destroy()
 	PDAs -= src
-	if (src.id && !delete_id && src.id.loc == src) //CHOMPEdit
-		src.id.forceMove(get_turf(src.loc))
+	if (id && !delete_id && id.loc == src)
+		id.forceMove(get_turf(loc))
 	else
-		QDEL_NULL(src.id)
+		QDEL_NULL(id)
 
 	current_app = null
 	scanmode = null

@@ -24,8 +24,8 @@
 
 	allowed_tools = list(
 	/obj/item/stack/medical/advanced/bruise_pack= 100,		\
-	/obj/item/stack/medical/bruise_pack = 20
-	)
+	/obj/item/stack/medical/bruise_pack = 60
+	) // Outpost 21 edit - Buffing ghetto surgery
 
 	min_duration = 60 //CHOMPedit
 	max_duration = 60 //CHOMPedit
@@ -124,10 +124,10 @@
 
 	allowed_tools = list(
 	/obj/item/stack/nanopaste = 100,
-	/obj/item/stack/cable_coil = 75,
-	/obj/item/tool/wrench = 50,
+	/obj/item/stack/cable_coil = 95,
+	/obj/item/tool/wrench = 70,
 	/obj/item/storage/toolbox = 10 	//Percussive Maintenance
-	)
+	) // Outpost 21 edit - Buffing ghetto surgery
 
 	min_duration = 60 //CHOMPedit
 	max_duration = 60 //CHOMPedit
@@ -202,9 +202,9 @@
 
 	allowed_tools = list(
 	/obj/item/surgical/scalpel = 100,		\
-	/obj/item/material/knife = 75,	\
-	/obj/item/material/shard = 50, 		\
-	)
+	/obj/item/material/knife = 95,	\
+	/obj/item/material/shard = 80, 		\
+	) // Outpost 21 edit - Buffing ghetto surgery
 
 	min_duration = 60 //CHOMPedit
 	max_duration = 60 //CHOMPedit
@@ -277,8 +277,8 @@
 
 	allowed_tools = list(
 	/obj/item/surgical/hemostat = 100,	\
-	/obj/item/material/kitchen/utensil/fork = 20
-	)
+	/obj/item/material/kitchen/utensil/fork = 60
+	) // Outpost 21 edit - Buffing ghetto surgery
 
 	allowed_procs = list(IS_WIRECUTTER = 100) //FBP code also uses this, so let's be nice. Roboticists won't know to use hemostats.
 
@@ -410,7 +410,7 @@
 		user.balloon_alert(user, "There is a [o_a][O] already!") // CHOMPEdit // Outpost 21 edit - Use organ name directly
 		return SURGERY_FAILURE
 
-	// Outpost 21 addition begin - Malignant organs
+	// CHOMPadd begin - Malignant organs
 	if(O && istype(O,/obj/item/organ/internal/malignant))
 		// malignant organs use a whitelist for allowed locations, and may be placed anywhere in it, not just one organ slot!
 		var/obj/item/organ/internal/malignant/ML = O
@@ -420,8 +420,9 @@
 		else
 			to_chat(user, "<span class='warning'>\The [O] won't fit in \the [affected.name].</span>")
 			return SURGERY_FAILURE
-	// Outpost 21 addition end
-	else if(O && affected.organ_tag == O.parent_organ)
+	// CHOMPadd end
+
+	if(O && affected.organ_tag == O.parent_organ)
 		organ_compatible = 1
 
 	else
@@ -472,8 +473,8 @@
 	surgery_name = "Attach Organ"
 	allowed_tools = list(
 	/obj/item/surgical/FixOVein = 100, \
-	/obj/item/stack/cable_coil = 75
-	)
+	/obj/item/stack/cable_coil = 95
+	) // Outpost 21 edit - Buffing ghetto surgery
 
 	min_duration = 40 //CHOMPedit
 	max_duration = 40 //CHOMPedit
