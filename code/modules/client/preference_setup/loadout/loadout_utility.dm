@@ -277,7 +277,7 @@ modular computers
 
 /datum/gear/utility/dufflebag/sec
     display_name = "security Dufflebag"
-    allowed_roles = list(JOB_HEAD_OF_SECURITY,JOB_WARDEN,JOB_DETECTIVE,JOB_SECURITY_OFFICER,JOB_BLUESHIELD_GUARD,JOB_SECURITY_PILOT) //YW ADDITIONS
+    allowed_roles = list(JOB_HEAD_OF_SECURITY,JOB_WARDEN,/*JOB_DETECTIVE,*/JOB_SECURITY_OFFICER,JOB_BLUESHIELD_GUARD,JOB_SECURITY_PILOT) //YW ADDITIONS// Outpost 21 edit - Detective is officer now
     path = /obj/item/storage/backpack/dufflebag/sec
 
 /datum/gear/utility/dufflebag/eng
@@ -307,7 +307,12 @@ modular computers
 /datum/gear/utility/bs_bracelet
 	display_name = "bluespace bracelet"
 	path = /obj/item/clothing/gloves/bluespace
-	cost = 2
+	cost = 1
+
+/datum/gear/utility/bs_bracelet_deluxe
+	display_name = "deluxe bluespace bracelet"
+	path = /obj/item/clothing/gloves/bluespace/deluxe
+	cost = 3
 
 /datum/gear/utility/walkpod
 	display_name = "podzu music player"

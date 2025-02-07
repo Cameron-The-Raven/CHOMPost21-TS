@@ -58,6 +58,12 @@
 	var/icon/F = getFlatIcon(M, defdir = SOUTH, no_anim = TRUE)
 	front = "'data:image/png;base64,[icon2base64(F)]'"
 
+/obj/item/card/id/proc/adjust_mining_points(var/points)
+	if(mining_points + points < 0)
+		return FALSE
+	mining_points += points
+	return TRUE
+
 /mob/proc/set_id_info(var/obj/item/card/id/id_card)
 	id_card.age = 0
 	id_card.registered_name		= real_name
@@ -542,7 +548,7 @@
 		JOB_ENTERTAINER = "itg_green",
 		JOB_LIBRARIAN = "itg_green",
 		JOB_WARDEN = "itg_red",
-		JOB_DETECTIVE = "itg_red",
+		//JOB_DETECTIVE = "itg_red", // Outpost 21 edit - Detective is officer now
 		JOB_SECURITY_OFFICER = "itg_red",
 		JOB_TALON_GUARD = "itg_red",
 		JOB_ROBOTICIST = "itg_purple",
